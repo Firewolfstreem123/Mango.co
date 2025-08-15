@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Feedback.php">
+    <link rel="stylesheet" href="./Feedback.sql">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Feedback System</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .feedback-form {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 500px;
+        margin: auto;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+    }
+    input, textarea, select, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    button:hover {
+        background: #45a049;
+    }
+    .feedback-list {
+        margin-top: 30px;
+        max-width: 600px;
+        margin: 30px auto;
+    }
+    .feedback-item {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-bottom: 15px;
+    }
+    .rating {
+        color: gold;
+    }
+</style>
+</head>
+<body>
+
+<h1>Book Feedback</h1>
+
+<div class="feedback-form">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label for="rating">Rating:</label>
+    <select id="rating">
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+    </select>
+
+    <label for="comment">Your Feedback:</label>
+    <textarea id="comment" rows="4" placeholder="Write your feedback here..."></textarea>
+
+    <button onclick="submitFeedback()">Submit Feedback</button>
+</div>
+
+<div class="feedback-list" id="feedbackList">
+    <h2>All Feedback</h2>
+</div>
+
+<script>
+function submitFeedback() {
+    const name = document.getElementById("name").value.trim();
+    const rating = document.getElementById("rating").value;
+    const comment = document.getElementById("comment").value.trim();
+
+    if (name === "" || comment === "") {
+        alert("Please fill in all fields!");
+        return;
+    }
+
+    const feedbackList = document.getElementById("feedbackList");
+    const feedbackItem = document.createElement("div");
+    feedbackItem.classList.add("feedback-item");
+    feedbackItem.innerHTML = `
+        <h3>${name}</h3>
+        <p class="rating">${"⭐".repeat(rating)}</p>
+        <p>${comment}</p>
+    `;
+    feedbackList.appendChild(feedbackItem);
+
+    // Clear input fields
+    document.getElementById("name").value = "";
+    document.getElementById("rating").value = "5";
+    document.getElementById("comment").value = "";
+}
+</script>
+
+</body>
+</html>
+
+</body>
+</html>

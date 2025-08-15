@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+  <title>Transactions</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Transactions</h1>
+
+<div id="transactionContainer"></div>
+
+<script>
+let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+let container = document.getElementById("transactionContainer");
+
+if (transactions.length === 0) {
+  container.innerHTML = "<p><strong>Nothing has been bought from the shop yet.</strong></p>";
+} else {
+  let table = document.createElement("table");
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Book Name</th>
+        <th>Price</th>
+        <th>Buyer</th>
+        <th>Seller</th>
+        <th>Purchase Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${transactions.map(t => `
+        <tr>
+          <td>${t.title}</td>
+          <td>$${t.price}</td>
+          <td>${t.buyer}</td>
+          <td>${t.seller}</td>
+          <td>${t.time}</td>
+        </tr>
+      `).join("")}
+    </tbody>
+  `;
+  container.appendChild(table);
+}
+</script>
+
+<p><a href="shop.html">Back to Shop</a></p>
+
+</body>
+</html>
+
+</body>
+</html>

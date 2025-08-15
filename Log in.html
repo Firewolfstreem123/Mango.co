@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./html.html">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login Page</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .login-container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+    width: 350px;
+    text-align: center;
+  }
+
+  .login-container h2 {
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .login-container input[type="text"],
+  .login-container input[type="email"],
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 15px 20px;
+    margin: 10px 0 20px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  .login-container input[type="text"]:focus,
+  .login-container input[type="email"]:focus,
+  .login-container input[type="password"]:focus {
+    border-color: #f5576c;
+    outline: none;
+  }
+
+  .button {
+    width: 100%;
+    padding-bottom:15px;
+    padding-top: 15px;
+    background: #f5576c;
+    border: 100px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    
+  }
+
+  .button:hover {
+    background: #d13e53;
+  }
+
+  .login-container .forgot {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #888;
+  }
+
+  .login-container .forgot a {
+    color: #f5576c;
+    text-decoration: none;
+  }
+
+  .login-container .forgot a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 400px) {
+    .login-container {
+      width: 90%;
+      padding: 30px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Welcome Back</h2>
+  <form>
+    <input type="text" placeholder="Username" required />
+    <input type="email" placeholder="Email Address" required />
+    <input type="password" placeholder="Password" required />
+    <a class="button"a href="./html.html"style="text-decoration: none;" type="submit">Log In</button>
+         <div class="forgot">
+      <a href="#">Forgot Password?</a>
+    </div>
+    <form id="loginForm">

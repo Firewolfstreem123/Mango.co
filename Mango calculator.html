@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="Calculator">
+        <input type="text"placeholder="0" id="inputbox">
+        <div>
+            <button class="operator" onclick="clearScreen()">AC</button>
+            <button class="operator" onclick="clearScreen()">DEL</button>
+            <button class="operator" onclick="AddToScreen('%')">%</button>
+            <button class="operator" onclick="AddToScreen('/')">/</button>
+        </div>
+        <div>
+            <button onclick="AddToScreen('7')">7</button>
+            <button onclick="AddToScreen('8')">8</button>
+            <button onclick="AddToScreen('9')">9</button>
+            <button class="operator" onclick="AddToScreen('*')">*</button>
+        </div>
+    <div>
+        <button onclick="AddToScreen('4')">4</button>
+        <button onclick="AddToScreen('5')">5</button>
+        <button onclick="AddToScreen('6')">6</button>
+        <button class="operator" onclick="AddToScreen('-')">-</button>
+    </div>
+    <div>
+        <button onclick="AddToScreen('1')">1</button>
+        <button onclick="AddToScreen('2')">2</button>
+        <button onclick="AddToScreen('3')">3</button>
+        <button class="operator" onclick="AddToScreen('+')">+</button>
+    </div>
+    <div>
+        <button onclick="AddToScreen('00')">00</button>
+        <button onclick="AddToScreen('0')">0</button>
+        <button onclick="AddToScreen('.')" >.</button>
+        <button onclick="calculate()">=</button>
+    </div>
+   </div>
+   
+   <style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+     *{
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins'sans-serif ;
+     }
+     
+     body{
+         
+         width: 100%;
+         height: 100vh;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         background: linear-gradient(aqua,blue);
+     }
+     
+     .calculator{
+         border: 1px solid #717377;
+         padding: 20px;
+         border-radius: 16px;
+         background: transparent;
+         box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+     
+     }
+     
+     input{
+         width: 320px;
+         border: none;
+         padding: 24px;
+         margin: 10px;
+         background: transparent;
+         box-shadow: 0px 3px 15px rgbs(84, 84, 84, 0.1);
+         font-size: 40px;
+         text-align: right;
+     
+     }
+     
+     input ::placeholder{
+         color: #ffffff;
+     }
+     
+     button{
+         border: none;
+         width: 60px;
+         height: 60px;
+         margin: 10px;
+         border-radius: 50%;
+         background: transparent;
+         color: #ffffff;
+         font-size: 20px;
+         cursor: pointer;
+     }
+     
+     .equalBtn{
+         background-color: #fb7c14;
+     }
+     
+     .operator{
+         color: #6dee0a;
+     }
+     
+         
+   </style>
+   <script>
+    function AddToScreen(key){
+        let ScreenValue =document.getElementById('inputbox').value
+        document.getElementById('inputbox').value=ScreenValue+key
+
+    }
+    function calculate(){
+        const value=document.getElementById('inputbox').value
+        document.getElementById('inputbox').value=eval(value)
+    }
+    function clearScreen(){
+        document.getElementById('inputbox').value=''
+    }
+   </script>
+</body>
+</html>

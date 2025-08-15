@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact Us</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  .contact-container {
+    max-width: 600px;
+    background: white;
+    margin: 50px auto;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #3b82f6;
+    margin-bottom: 10px;
+  }
+  p.phone-number {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 30px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  input, textarea {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  input:focus, textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+  }
+  button {
+    padding: 15px;
+    background: #3b82f6;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #2563eb;
+  }
+  @media (max-width: 480px) {
+    .contact-container {
+      margin: 20px;
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="contact-container">
+  <h1>Contact Us</h1>
+  <p class="phone-number">📞 Call us: <a href="tel:+0249079956" style="color:#3b82f6; text-decoration:none;">024 907 9956</a></p>
+
+  <form>
+    <label for="name">Your Name</label>
+    <input type="text" id="name" placeholder="Enter your full name" required />
+
+    <label for="email">Your Email</label>
+    <input type="email" id="email" placeholder="Enter your email address" required />
+
+    <label for="message">Your Message</label>
+    <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+</div>
+
+</body>
+</html>
+
+</body>
+</html>

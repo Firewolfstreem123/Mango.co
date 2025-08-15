@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./shop.php">
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+  <title>Book Shop</title>
+  <style>
+    .book {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 300px;
+    }
+    button {
+      padding: 5px 10px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: darkgreen;
+    }
+  </style>
+</head>
+<body>
+
+>
+
+</body>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Shop</title>
+  <style>
+    .book {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 300px;
+    }
+    button {
+      padding: 5px 10px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: darkgreen;
+    }
+    input {
+      margin-top: 5px;
+      width: 95%;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Book Shop</h1>
+<div class="book" data-title="The Great Adventure" data-price="15" data-seller="John Doe">
+  <p><strong>The Great Adventure</strong> - $15</p>
+   <div id="paypal-button-container-great-adventure"></div>
+   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <!-- Identify your business so that you can collect the payments. -->
+  <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com">
+
+  <!-- Specify a Buy Now button. -->
+  <input type="hidden" name="cmd" value="_xclick">
+
+  <!-- Specify details about the item that buyers will purchase. -->
+  <input type="hidden" name="item_name" value="Book Title Here">
+  <input type="hidden" name="amount" value="9.99">
+  <input type="hidden" name="currency_code" value="USD">
+
+  <!-- Customize button text -->
+  <input type="submit" value="Buy Now" style="background:#0070ba; color:white; padding:10px 20px; border:none; border-radius:5px;font-weight:bold; cursor:pointer;">
+</form>
+</div>
+
+<div class="book" data-title="Secrets of the Sea" data-price="20" data-seller="Mary Johnson">
+  <p><strong>Secrets of the Sea</strong> - $20</p>
+   <div id="paypal-button-container-great-adventure"></div>
+   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <!-- Identify your business so that you can collect the payments. -->
+  <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com">
+
+  <!-- Specify a Buy Now button. -->
+  <input type="hidden" name="cmd" value="_xclick">
+
+  <!-- Specify details about the item that buyers will purchase. -->
+  <input type="hidden" name="item_name" value="Book Title Here">
+  <input type="hidden" name="amount" value="9.99">
+  <input type="hidden" name="currency_code" value="USD">
+
+  <!-- Customize button text -->
+  <input type="submit" value="Buy Now" style="background:#0070ba; color:white; padding:10px 20px; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
+
+</form>
+
+</div>
+
+<script>
+function loadTransactions() {
+  return JSON.parse(localStorage.getItem("transactions")) || [];
+}
+
+function saveTransactions(transactions) {
+  localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+
+function purchaseBook(button) {
+  let bookDiv = button.parentElement;
+  let title = bookDiv.getAttribute("data-title");
+  let price = bookDiv.getAttribute("data-price");
+  let seller = bookDiv.getAttribute("data-seller");
+
+  let buyer = prompt("Enter your name:");
+  if (!buyer) return alert("Purchase cancelled — name is required.");
+
+  let location = prompt("Enter your delivery address:");
+  if (!location) return alert("Purchase cancelled — address is required.");
+
+  let creditCard = prompt("Enter your credit card number (16 digits):");
+  if (!creditCard || !/^\d{16}$/.test(creditCard)) {
+    return alert("Invalid credit card number. Purchase cancelled.");
+  }
+
+  let transactions = loadTransactions();
+  transactions.push({
+    title: title,
+    price: price,
+    buyer: buyer,
+    seller: seller,
+    location: location,
+    time: new Date().toLocaleString()
+  });
+
+  saveTransactions(transactions);
+
+  // Notify buyer
+  alert(`✅ Purchase successful!\n"${title}" bought by ${buyer} from ${seller} for $${price}.\nDelivery to: ${location}`);
+
+  // Notify seller
+  alert(`📢 Notification to ${seller}: ${buyer} has bought "${title}" for $${price}. Deliver to: ${location}`);
+}
+function loadTransactions() {
+  return JSON.parse(localStorage.getItem("transactions")) || [];
+}
+
+function saveTransactions(transactions) {
+  localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+
+function renderPaypalButton(bookDiv) {
+  const title = bookDiv.getAttribute("data-title");
+  const price = bookDiv.getAttribute("data-price");
+  const seller = bookDiv.getAttribute("data-seller");
+
+  // Generate unique container ID based on title
+  const containerId = "paypal-button-container-" + title.toLowerCase().replace(/\s+/g, '-');
+
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: price
+          },
+          description: title
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        let buyer = prompt("Payment successful! Please enter your name:");
+
+        if (!buyer) {
+          alert("Name required to complete purchase.");
+          return;
+        }
+
+        let location = prompt("Enter your delivery address:");
+        if (!location) {
+          alert("Delivery address required.");
+          return;
+        }
+
+        // Save transaction
+        let transactions = loadTransactions();
+        transactions.push({
+          title: title,
+          price: price,
+          buyer: buyer,
+          seller: seller,
+          location: location,
+          time: new Date().toLocaleString(),
+          paypalOrderId: data.orderID,
+          payerEmail: details.payer.email_address
+        });
+        saveTransactions(transactions);
+
+        alert(`Thank you ${buyer}! Your purchase of "${title}" is complete.`);
+        // Notify seller (optional)
+        alert(`Notification to ${seller}: ${buyer} bought "${title}". Deliver to: ${location}`);
+      });
+    },
+    onError: function(err) {
+      alert("Payment could not be completed. Please try again.");
+      console.error(err);
+    }
+  }).render("#" + containerId);
+}
+
+// Initialize PayPal buttons for all books
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".book").forEach(bookDiv => {
+    renderPaypalButton(bookDiv);
+  });
+});
+
+</script>
+
+<p><a href="./transaction.html">Go to Transactions Page</a></p>
+
+</body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Book Shop</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; }
+  .book { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+  .book h2 { margin: 0 0 10px; }
+  form input[type="submit"] {
+    background: #0070ba; color: white; border: none; padding: 10px 18px;
+    border-radius: 5px; font-weight: bold; cursor: pointer;
+  }
+  form input[type="submit"]:hover {
+    background: #004c8c;
+  }
+</style>
+</head>
+
+</html>
+
+
+
+
+</html>
+
+</html>
+
+</body>
+</html>
